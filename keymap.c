@@ -12,8 +12,6 @@ enum sofle_layers {
 enum custom_keycodes {
     KC_WORKMAN = SAFE_RANGE,
     KC_QWERTY,
-    KC_NUMBR, /* Number layer */ 
-    KC_SYMBL, /* Symbol layer */ 
     KC_ENTSYM, /* Enter when click, SYMBL layer when hold */
     KC_BSNM,  /* Backspace when click, NUMBR layer when hold */ 
     KC_ESCNAV, /* Esc when click, Nav layer when hold */   
@@ -305,26 +303,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_WORKMAN:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_WORKMAN);
-            }
-            return false;
-            break;
-        case KC_NUMBR:
-            if (record->event.pressed) {
-                layer_on(_NUMBR);
-                update_tri_layer(_NUMBR, _SYMBL, _NAV);
-            } else {
-                layer_off(_NUMBR);
-                update_tri_layer(_NUMBR, _SYMBL, _NAV);
-            }
-            return false;
-            break;
-        case KC_SYMBL:
-            if (record->event.pressed) {
-                layer_on(_SYMBL);
-                update_tri_layer(_NUMBR, _SYMBL, _NAV);
-            } else {
-                layer_off(_SYMBL);
-                update_tri_layer(_NUMBR, _SYMBL, _NAV);
             }
             return false;
             break;
