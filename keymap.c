@@ -67,6 +67,7 @@ uint16_t td_hold_timer;  //tap dance timer variable
 #define PASTE TD(TD_PASTE)      // Paste and Del
 #define HOME TD(TD_HOME)        // Home and Ctrl-Tab
 #define END LT(3,KC_NO)        // End and MEH 
+#define PGUP LT(2,KC_NO)        // PgUp and MEH 
 #define MUTESLEEP LT(5,KC_NO)   // Mute and Sleep
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -82,8 +83,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------| MODE  |    | MUTE  |------+------+------+------+------+------|
  * | UNDO |   Z  |   X  |   C  |   D  |   V  |-------|    |-------|   K  |   L  |   ,  |   .  |   /  | REDO |
  * `-----------------------------------------/       /     \       \----------------------------------------'
- *          | Home | End  |  ESC  |Space | / Tab    /       \ Enter \ | Bspc  | DEL  |      |      |
- *          | Numbr|      | 'NAV' |      |/ 'CTRL' /         \'SYMBL'\|'NUM'  |'FUN' |      |      |
+ *          | Home | End  |  ESC  |Space | / Tab    /       \ Enter \ | Bspc  | DEL  | PgUp | PgDn |
+ *          | GUI  | 'MEH'| 'NAV' |      |/ 'CTRL' /         \'SYMBL'\|'NUM'  |'FUN' |'MEH' |  GUI |
  *           `------------------------------------'           '-------'----------------------------'
  */
 [_WORKMAN] = LAYOUT(
@@ -91,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   PASTE,         KC_Q,         KC_D,         KC_R,         KC_W,         KC_B,                                      KC_J,    KC_F,         KC_U,         KC_P,         KC_QUOT,       SAVE,
   COPY,          ALGR_T(KC_A), LALT_T(KC_S), LCTL_T(KC_H), LSFT_T(KC_T), KC_G,                                      KC_Y,    RSFT_T(KC_N), RCTL_T(KC_E), RALT_T(KC_O), ALGR_T(KC_I),  FIND,
   UNDO,          KC_Z,         KC_X,         KC_M,         KC_C,         KC_V,   TG(_NUMBR),             MUTESLEEP, KC_K,    KC_L,         KC_COMM,      KC_DOT,       KC_SLSH,       REDO,
-                               HOME,         END,       KC_ESCNAV,    KC_SPC, LCTL_T(KC_TAB),            KC_ENTSYM, KC_BSNM, KC_DELFUN,    KC_PGUP,      TD(TD_PGDN)
+                               HOME,         END,       KC_ESCNAV,    KC_SPC, LCTL_T(KC_TAB),            KC_ENTSYM, KC_BSNM, KC_DELFUN,    PGUP,         TD(TD_PGDN)
 ),
 
 /*
@@ -133,8 +134,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *             `----------------------------------'           '------'  '----------------------------'
  */
 [_NUMBR] = LAYOUT(
-  XXXXXXX,  KC_F1,   KC_F2, KC_F3, KC_F4, KC_F5,                         KC_F6, KC_F7, KC_F8, KC_F9, KC_F10,XXXXXXX,
-  XXXXXXX,  KC_LBRC, KC_7,  KC_8,  KC_9,  KC_RBRC,                       XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
+  XXXXXXX,  KC_F1,   KC_F2, KC_F3, KC_F4, KC_F5,                         KC_F6, KC_F7, KC_F8, KC_F9, KC_F10,KC_F11,
+  XXXXXXX,  KC_LBRC, KC_7,  KC_8,  KC_9,  KC_RBRC,                       XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX,XXXXXXX,KC_F12,
   XXXXXXX,  KC_SCLN, KC_4,  KC_5,  KC_6,  KC_EQL,                        XXXXXXX, XXXXXXX, XXXXXXX,KC_RALT,KC_ALGR,XXXXXXX,
   XXXXXXX,  KC_GRV,  KC_1,  KC_2,  KC_3,  KC_BSLS, TG(_NUMBR),     XXXXXXX, XXXXXXX,XXXXXXX, KC_COMM,KC_DOT, KC_SLSH,XXXXXXX,
            XXXXXXX, TG(_NUMBR), KC_DOT, KC_0, KC_MINS,           KC_ENT, KC_BSPC, KC_DEL, XXXXXXX, XXXXXXX
@@ -175,11 +176,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'            '------''---------------------------'
  */
 [_NAV] = LAYOUT(
-  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                                 KC_QWERTY, KC_WORKMAN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                                 XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                                 XXXXXXX,   KC_MS_L,    KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX,
-  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, XXXXXXX,               XXXXXXX, XXXXXXX,   KC_WH_L,    KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
-         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,              KC_BTN1, KC_BTN2,   KC_BTN3,    XXXXXXX,    XXXXXXX
+  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                       KC_QWERTY, KC_WORKMAN, XXXXXXX, KC_PWR, KC_WAKE, KC_SLEP,
+  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                       XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                       XXXXXXX,   KC_MS_L,    KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX,
+  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,       XXXXXXX, XXXXXXX,   KC_WH_L,    KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX,
+         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,              KC_BTN1, KC_BTN2,   KC_BTN3,    XXXXXXX, XXXXXXX
 ),
 /* Function
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -208,7 +209,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* 32 * 32 logo */
 static void render_logo(void) {
-    static const char PROGMEM hell_logo[] = {
+    static const char PROGMEM communism_logo[] = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xc0, 0xe0, 0xe0, 0xe0, 0xe2, 0xe2, 
         0xe2, 0x42, 0x06, 0x06, 0x0e, 0x0c, 0x1c, 0x38, 0x78, 0xf0, 0xe0, 0xc0, 0x80, 0x00, 0x00, 0x00, 
         0x00, 0x00, 0x00, 0x00, 0x18, 0x3c, 0x7c, 0xfe, 0xff, 0x7f, 0x3f, 0x1f, 0x3f, 0x7f, 0xfb, 0xf1, 
@@ -219,14 +220,8 @@ static void render_logo(void) {
         0x7c, 0x7c, 0x7c, 0x7c, 0x3c, 0x3e, 0x3f, 0x1f, 0x1f, 0x0f, 0x1f, 0x3f, 0x7d, 0x70, 0x20, 0x00
     };
 
-    oled_write_raw_P(hell_logo, sizeof(hell_logo));
+    oled_write_raw_P(communism_logo, sizeof(communism_logo));
 }
-
-/* 32 * 14 os logos */
-static const char PROGMEM windows_logo[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xbc, 0xbc, 0xbe, 0xbe, 0x00, 0xbe, 0xbe, 0xbf, 0xbf, 0xbf, 0xbf, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x07, 0x0f, 0x0f, 0x00, 0x0f, 0x0f, 0x1f, 0x1f, 0x1f, 0x1f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-
-static const char PROGMEM mac_logo[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0xf0, 0xf8, 0xf8, 0xf8, 0xf0, 0xf6, 0xfb, 0xfb, 0x38, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x07, 0x0f, 0x1f, 0x1f, 0x0f, 0x0f, 0x1f, 0x1f, 0x0f, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-
 
 /* KEYBOARD PET START */
 
@@ -389,56 +384,48 @@ static void print_logo_narrow(void) {
 static void print_status_narrow(void) {
     /* Print current mode */
     oled_set_cursor(0, 0);
-    if (keymap_config.swap_lctl_lgui) {
-        oled_write_raw_P(mac_logo, sizeof(mac_logo));
-    } else {
-        oled_write_raw_P(windows_logo, sizeof(windows_logo));
-    }
-
-    oled_set_cursor(0, 3);
-
+    oled_write("key", false);   
+    oled_set_cursor(0, 2);
     switch (get_highest_layer(default_layer_state)) {
         case _QWERTY:
-            oled_write("QWRT", false);
+            oled_write("QWRTY", false);
             break;
         case _WORKMAN:
-            oled_write("WORK", false);
+            oled_write("WRKMN", false);
             break;
         default:
-            oled_write("____", false);
+            oled_write("_____", false);
     }
-
-    oled_set_cursor(0, 5);
-
     /* Print current layer */
-
-    oled_set_cursor(0, 6);
+    oled_set_cursor(0, 5);
+    oled_write("layer", false);
+    oled_set_cursor(0, 7);
 
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write("base ", false);
+            oled_write("BASE ", false);
             break;
         case _WORKMAN:
-            oled_write("base ", false);
+            oled_write("BASE ", false);
             break;
         case _NUMBR:
-            oled_write("numbr", false);
+            oled_write("NUM  ", false);
             break;
         case _SYMBL:
-            oled_write("symbl", false);
+            oled_write("SYM  ", false);
             break;
         case _NAV:
-            oled_write("nav  ", false);
+            oled_write("NAV  ", false);
             break;
         case _FUNC:
-            oled_write("func ", false);
+            oled_write("FUN  ", false);
             break;
         default:
             oled_write("_____", false);
     }
 
     /* caps lock */
-    oled_set_cursor(0, 8);
+    oled_set_cursor(0, 10);
     oled_write("CPSLK", led_usb_state.caps_lock);
 
     /* KEYBOARD PET RENDER START */
@@ -541,6 +528,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
+        case LT(2,KC_NO):      // PgUp and MEH
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_PGUP); // tap End
+            } else if (record->event.pressed) {
+                tap_code16(MEH(KC_NO)); // hold MEH
+            }
+            return false;
+            break;
         case LT(3,KC_NO):      // End and MEH
             if (record->tap.count && record->event.pressed) {
                 tap_code16(KC_END); // tap End
@@ -583,7 +578,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_WORKMAN] = { ENCODER_CCW_CW(KC_RIGHT, KC_LEFT),          ENCODER_CCW_CW(KC_DOWN, KC_UP)  },
     [_QWERTY] =  { ENCODER_CCW_CW(KC_RIGHT, KC_LEFT),          ENCODER_CCW_CW(KC_DOWN, KC_UP) },
     [_NUMBR] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU),           ENCODER_CCW_CW(XXXXXXX, XXXXXXX)  },
-    [_SYMBL] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU),            ENCODER_CCW_CW(XXXXXXX, XXXXXXX)  },
+    [_SYMBL] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU),           ENCODER_CCW_CW(XXXXXXX, XXXXXXX)  },
     [_NAV] =     { ENCODER_CCW_CW(KC_CALC, XXXXXXX),           ENCODER_CCW_CW(KC_MYCM, KC_MAIL)  },
     [_FUNC] =    { ENCODER_CCW_CW(KC_MPLY, KC_MSTP),           ENCODER_CCW_CW(KC_MFFD, KC_MRWD)  }, 
 };
