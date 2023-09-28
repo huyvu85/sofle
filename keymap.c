@@ -52,15 +52,17 @@ tap_dance_action_t tap_dance_actions[] = {
   [TD_CUT]  = ACTION_TAP_DANCE_DOUBLE(C(KC_C), C(KC_X)),
   [TD_SAVE]  = ACTION_TAP_DANCE_DOUBLE(C(KC_S), RCS(KC_S)),
   [TD_PASTE]  = ACTION_TAP_DANCE_DOUBLE(C(KC_V), KC_INS),
+  [TD_DEL_BS]  = ACTION_TAP_DANCE_DOUBLE(KC_DEL, KC_BSPC),
 };
 
 uint16_t td_hold_timer;  //tap dance timer variable
 #define TD_HOLD_LIMIT 200
 
 //hotkeys
-#define FIND TD(TD_FIND)        // Find and Caps
 #define REDO C(KC_Y)   
-#define UNDO C(KC_Z)   
+#define UNDO C(KC_Z) 
+#define FIND TD(TD_FIND)        // Find and Caps
+#define DEL_BS TD(TD_DEL_BS)    // Del and Backspace
 #define COPY TD(TD_CUT)         // Cut and Copy
 #define SAVE TD(TD_SAVE)        // Save and Save as
 #define PASTE TD(TD_PASTE)      // Paste and Ins
@@ -86,11 +88,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *           `------------------------------------'           '-------'----------------------------'
  */
 [_WORKMAN] = LAYOUT(
-  C_S_T(KC_DEL), LSA_T(KC_F1), LCA_T(KC_F2), KC_F3,        KC_F4,        KC_F5,                                     KC_F6,   KC_F7,        KC_F8,        KC_F9,        KC_F10,        KC_PSCR,
-  PASTE,         KC_Q,         KC_D,         KC_R,         KC_W,         KC_B,                                      KC_J,    KC_F,         KC_U,         KC_P,         KC_QUOT,       SAVE,
-  COPY,          ALGR_T(KC_A), LALT_T(KC_S), LCTL_T(KC_H), LSFT_T(KC_T), KC_G,                                      KC_Y,    RSFT_T(KC_N), RCTL_T(KC_E), RALT_T(KC_O), ALGR_T(KC_I),  FIND,
-  UNDO,          KC_Z,         KC_X,         KC_M,         KC_C,         KC_V,   KC_QWERTY,                KC_MUTE, KC_K,    KC_L,         KC_COMM,      KC_DOT,       KC_SLSH,       REDO,
-                               HOME,         END,       KC_ESC_MS,  KC_SPC_NAV, LCTL_T(KC_TAB),            KC_ENTSYM, KC_BSNM, KC_DELFUN,    PGUP,       RGUI_T(KC_PGDN)
+  DEL_BS, KC_F1,        KC_F2, KC_F3, KC_F4,        KC_F5,                                              KC_F6,   KC_F7,        KC_F8,        KC_F9,        KC_F10,        KC_PSCR,
+  PASTE,  KC_Q,         KC_D,  KC_R,  KC_W,         KC_B,                                               KC_J,    KC_F,         KC_U,         KC_P,         KC_QUOT,       SAVE,
+  COPY,   ALGR_T(KC_A), LALT_T(KC_S), LCTL_T(KC_H), LSFT_T(KC_T), C_S_T(KC_G),                          KC_Y,    RSFT_T(KC_N), RCTL_T(KC_E), RALT_T(KC_O), ALGR_T(KC_I),  FIND,
+  UNDO,   KC_Z,         KC_X,         KC_M,         KC_C,         KC_V,   KC_QWERTY,           KC_MUTE, KC_K,         KC_L,         KC_COMM,      KC_DOT,  KC_SLSH,       REDO,
+          HOME,         END,      KC_ESC_MS,  KC_SPC_NAV, LCTL_T(KC_TAB),                    KC_ENTSYM, KC_BSNM, KC_DELFUN,    PGUP,       RGUI_T(KC_PGDN)
 ),
 
 /*
@@ -195,10 +197,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `----------------------------------'            '------''---------------------------'
  */
 [_NAV] = LAYOUT(
-  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX,
-  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                       XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,                   XXXXXXX, 
-  KC_NO, KC_NO, KC_NO, KC_NO, KC_LSFT, KC_NO,                     KC_CAPS, KC_LEFT,    KC_DOWN,    KC_UP,    KC_RIGHT,        XXXXXXX,
-  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,       XXXXXXX, XXXXXXX, C(KC_LEFT), C(KC_DOWN), C(KC_UP), C(KC_RIGHT),     XXXXXXX,
+  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,
+  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                       UNDO,    C(KC_V), C(KC_C), C(KC_X), REDO,     XXXXXXX, 
+  KC_NO, KC_ALGR, KC_LALT, KC_LCTL, KC_LSFT, KC_NO,               KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, XXXXXXX,
+  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,       XXXXXXX, KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,   XXXXXXX,
          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* Function
@@ -218,7 +220,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_FUNC] = LAYOUT(
  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
  KC_VOLU,  KC_F12, KC_F7,  KC_F8,  KC_F9,  KC_PSCR,                           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
- KC_VOLD,  KC_F11, KC_F4,  KC_F5,  KC_F6,  KC_SCRL,                           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+ KC_VOLD,  KC_F11, KC_F4,  KC_F5,  KC_F6,  KC_SCRL,                           XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_ALGR, XXXXXXX,
  KC_MUTE,  KC_F10, KC_F1,  KC_F2,  KC_F3,  KC_PAUS, XXXXXXX,               XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
            XXXXXXX, XXXXXXX, KC_APP, KC_SPC, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
