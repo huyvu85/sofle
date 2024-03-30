@@ -1,0 +1,5 @@
+qmk setup
+qmk config user.keyboard=sofle/rev1
+qmk new-keymap
+qmk compile -kb sofle/rev1 -km vu -t avrdude-split-left
+qmk compile -kb sofle/rev1 -km vu -t avrdude-split-right
