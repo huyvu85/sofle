@@ -159,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX, KC_LBRC,    KC_AMPR,    KC_ASTR,       ALGR(KC_2), KC_RBRC,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, KC_COLN,    KC_DLR,     KC_PERC,       KC_CIRC,    KC_PLUS,                     XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_ALGR, XXXXXXX,
   XXXXXXX, KC_TILD,    KC_EXLM,    KC_AT,         KC_HASH,    KC_PIPE, XXXXXXX,            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                    XXXXXXX, XXXXXXX,       KC_LPRN,    KC_RPRN, KC_UNDS,            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+               XXXXXXX, XXXXXXX,   KC_LPRN,   KC_RPRN, KC_UNDS,                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* Mouse
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -201,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                          UNDO,    C(KC_V), C(KC_C), C(KC_X), REDO,     XXXXXXX,
   KC_NO,  KC_ALGR, KC_LALT, KC_LCTL, KC_LSFT, C_S_T(KC_NO),                   KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT, XXXXXXX,
   KC_NO,  KC_NO,   KC_LSFT, KC_TAB,  KC_SPC,  KC_NO,    KC_NO,       XXXXXXX, KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,   XXXXXXX,
-                   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,       XXXXXXX, KC_BSPC, KC_DEL, XXXXXXX, XXXXXXX
+                   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,       XXXXXXX, KC_BACKSPACE ,KC_DEL, XXXXXXX, XXXXXXX
 ),
 /* Function
  * ,-----------------------------------------.                    ,-----------------------------------------.
