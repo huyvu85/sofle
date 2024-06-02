@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | PASTE|   Q  |   D  |   R  |   W  |   B  |                    |   J  |   F  |   U  |   P  |   '  | SAVE |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | COPY |   A  |   S  |   H  |   T  |   G  |-------.    ,-------|   Y  |   N  |   E  |   O  |   I  | FIND |
+ * | COPY |   A  |   S  |   H  |   T  |   G  |-------.    ,-------|   Y  |   N  |   E  |   O  |   I  |K Lock|
  * |------+------+------+------+------+------| MODE  |    | MUTE  |------+------+------+------+------+------|
  * | UNDO |   Z  |   X  |   C  |   D  |   V  |-------|    |-------|   K  |   L  |   ,  |   .  |   /  | REDO |
  * `-----------------------------------------/       /     \       \----------------------------------------'
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_WORKMAN] = LAYOUT(
   DEL_BS, KC_F1,        KC_F2, KC_F3, KC_F4,        KC_F5,                                              KC_F6,       KC_F7,        KC_F8,        KC_F9,        KC_F10,        KC_PSCR,
   PASTE,  KC_Q,         KC_D,  KC_R,  KC_W,         KC_B,                                               KC_J,        KC_F,         KC_U,         KC_P,         KC_QUOT,       SAVE,
-  COPY,   ALGR_T(KC_A), LALT_T(KC_S), LCTL_T(KC_H), LSFT_T(KC_T), C_S_T(KC_G),                          RCS_T(KC_Y), RSFT_T(KC_N), RCTL_T(KC_E), LALT_T(KC_O), ALGR_T(KC_I),  FIND,
+  COPY,   ALGR_T(KC_A), LALT_T(KC_S), LCTL_T(KC_H), LSFT_T(KC_T), C_S_T(KC_G),                          RCS_T(KC_Y), RSFT_T(KC_N), RCTL_T(KC_E), LALT_T(KC_O), ALGR_T(KC_I),  QK_LOCK,
   UNDO,   KC_Z,         KC_X,         KC_M,         KC_C,         KC_V,   KC_QWERTY,           KC_MUTE, KC_K,        KC_L,         KC_COMM,      KC_DOT,       KC_SLSH,       REDO,
           HOME,         END,      KC_ESC_MS,  KC_SPC_NAV, LCTL_T(KC_TAB),                    KC_ENTSYM, KC_BSNM,     KC_DELFUN,    PGDN,         RGUI_T(KC_PGUP)
 ),
@@ -598,8 +598,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_QWERTY] =  { ENCODER_CCW_CW(KC_RIGHT, KC_LEFT),          ENCODER_CCW_CW(KC_DOWN, KC_UP) },
     [_NUMBR] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU),           ENCODER_CCW_CW(XXXXXXX, XXXXXXX)  },
     [_SYMBL] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU),           ENCODER_CCW_CW(XXXXXXX, XXXXXXX)  },
-    [_MAUS] =    { ENCODER_CCW_CW(XXXXXXX, XXXXXXX),           ENCODER_CCW_CW(KC_MFFD, KC_MRWD)  },
+    [_MAUS] =    { ENCODER_CCW_CW(XXXXXXX, XXXXXXX),           ENCODER_CCW_CW(KC_WH_R, KC_WH_L)  },
     [_FUNC] =    { ENCODER_CCW_CW(KC_MPLY, KC_MSTP),           ENCODER_CCW_CW(XXXXXXX, XXXXXXX)  },
-    [_NAV] =     { ENCODER_CCW_CW(XXXXXXX, XXXXXXX),           ENCODER_CCW_CW(KC_MPLY, KC_MSTP)  },
+    [_NAV] =     { ENCODER_CCW_CW(XXXXXXX, XXXXXXX),           ENCODER_CCW_CW(KC_WH_R, KC_WH_L)  },
 };
 #endif
