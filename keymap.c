@@ -48,7 +48,7 @@ enum {
 
 //Tap Dance Definitions
 tap_dance_action_t tap_dance_actions[] = {
-  [TD_FIND]  = ACTION_TAP_DANCE_DOUBLE(C(KC_F), KC_CAPS),
+  [TD_FIND]  = ACTION_TAP_DANCE_DOUBLE(QK_LOCK, C(KC_F)),
   [TD_CUT]  = ACTION_TAP_DANCE_DOUBLE(C(KC_C), C(KC_X)),
   [TD_SAVE]  = ACTION_TAP_DANCE_DOUBLE(C(KC_S), RCS(KC_S)),
   [TD_PASTE]  = ACTION_TAP_DANCE_DOUBLE(C(KC_V), KC_INS),
@@ -61,7 +61,7 @@ uint16_t td_hold_timer;  //tap dance timer variable
 //hotkeys
 #define REDO C(KC_Y)
 #define UNDO C(KC_Z)
-#define FIND TD(TD_FIND)        // Find and Caps
+#define FIND TD(TD_FIND)        // Key Lock and Find
 #define DEL_BS TD(TD_DELBS)     // Del and Backspace
 #define COPY TD(TD_CUT)         // Cut and Copy
 #define SAVE TD(TD_SAVE)        // Save and Save as
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_WORKMAN] = LAYOUT(
   DEL_BS, KC_F1,        KC_F2, KC_F3, KC_F4,        KC_F5,                                              KC_F6,       KC_F7,        KC_F8,        KC_F9,        KC_F10,        KC_PSCR,
   PASTE,  KC_Q,         KC_D,  KC_R,  KC_W,         KC_B,                                               KC_J,        KC_F,         KC_U,         KC_P,         KC_QUOT,       SAVE,
-  COPY,   ALGR_T(KC_A), LALT_T(KC_S), LCTL_T(KC_H), LSFT_T(KC_T), C_S_T(KC_G),                          RCS_T(KC_Y), RSFT_T(KC_N), RCTL_T(KC_E), LALT_T(KC_O), ALGR_T(KC_I),  QK_LOCK,
+  COPY,   ALGR_T(KC_A), LALT_T(KC_S), LCTL_T(KC_H), LSFT_T(KC_T), C_S_T(KC_G),                          RCS_T(KC_Y), RSFT_T(KC_N), RCTL_T(KC_E), LALT_T(KC_O), ALGR_T(KC_I),  FIND,
   UNDO,   KC_Z,         KC_X,         KC_M,         KC_C,         KC_V,   KC_QWERTY,           KC_MUTE, KC_K,        KC_L,         KC_COMM,      KC_DOT,       KC_SLSH,       REDO,
           HOME,         END,      KC_ESC_MS,  KC_SPC_NAV, LCTL_T(KC_TAB),                    KC_ENTSYM, KC_BSNM,     KC_DELFUN,    PGDN,         RGUI_T(KC_PGUP)
 ),
