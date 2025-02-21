@@ -42,6 +42,7 @@ enum {
   TD_CUT,
   TD_SAVE,
   TD_PASTE,
+  TD_PASTE2,
   TD_ESC_PR,
   TD_DELBS
 };
@@ -52,6 +53,7 @@ tap_dance_action_t tap_dance_actions[] = {
   [TD_CUT]  = ACTION_TAP_DANCE_DOUBLE(C(KC_C), C(KC_X)),
   [TD_SAVE]  = ACTION_TAP_DANCE_DOUBLE(C(KC_S), RCS(KC_S)),
   [TD_PASTE]  = ACTION_TAP_DANCE_DOUBLE(C(KC_V), KC_INS),
+  [TD_PASTE2]  = ACTION_TAP_DANCE_DOUBLE(C(KC_V), LGUI(KC_V)),
   [TD_DELBS]  = ACTION_TAP_DANCE_DOUBLE(KC_DEL, KC_BSPC),
 };
 
@@ -66,6 +68,7 @@ uint16_t td_hold_timer;  //tap dance timer variable
 #define COPY TD(TD_CUT)         // Cut and Copy
 #define SAVE TD(TD_SAVE)        // Save and Save as
 #define PASTE TD(TD_PASTE)      // Paste and Ins
+#define PASTE2 TD(TD_PASTE2)      // Paste and Win+V
 #define HOME LT(1,KC_NO)        // Home and Numbr
 #define END LCA_T(KC_END)       // End and Ctrl-Alt
 #define PGDN LCA_T(KC_PGDN)     // PgDn and Ctrl-Alt
@@ -89,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_WORKMAN] = LAYOUT(
   KC_DEL, KC_F1,        KC_F2, KC_F3, KC_F4,        KC_F5,                                              KC_F6,       KC_F7,        KC_F8,        KC_F9,        KC_F10,        ESC_PR,
-  PASTE,  KC_Q,         KC_D,  KC_R,  KC_W,         KC_B,                                               KC_J,        KC_F,         KC_U,         KC_P,         KC_QUOT,       PASTE,
+  PASTE,  KC_Q,         KC_D,  KC_R,  KC_W,         KC_B,                                               KC_J,        KC_F,         KC_U,         KC_P,         KC_QUOT,       PASTE2,
   COPY,   ALGR_T(KC_A), LALT_T(KC_S), LCTL_T(KC_H), LSFT_T(KC_T), C_S_T(KC_G),                          RCS_T(KC_Y), RSFT_T(KC_N), RCTL_T(KC_E), LALT_T(KC_O), ALGR_T(KC_I),  COPY,
   UNDO,   KC_Z,         KC_X,         KC_M,         KC_C,         KC_V,   KC_QWERTY,           KC_MUTE, KC_K,        KC_L,         KC_COMM,      KC_DOT,       KC_SLSH,       REDO,
           HOME,         END,      KC_ESC_MS,  KC_SPC_NAV, LCTL_T(KC_TAB),                    KC_ENTSYM, KC_BSNM,     KC_DELFUN,    PGDN,         RGUI_T(KC_PGUP)
@@ -483,6 +486,20 @@ bool oled_task_user(void) {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        switch (keycode) {
+            case KC_SPC: 
+            case KC_ENT:
+            case KC_DOT:
+            case KC_COMM:
+            case KC_SPC_NAV:
+            case KC_ENTSYM:
+            case KC_ESC_MS:
+                caps_word_off();
+                break;
+        }
+    }
+
     switch (keycode) {
         case KC_QWERTY:
             if (record->event.pressed) {
